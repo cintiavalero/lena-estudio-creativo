@@ -1,0 +1,27 @@
+# Dependencias (se instalan con "npm install", no se suben a GitHub)
+node_modules/
+
+# Versión compilada del sitio (la genera Vercel o "npm run build")
+dist/
+dist-ssr/
+
+# Registros y temporales
+*.log
+npm-debug.log*
+.vite/
+.cache/
+*.tmp
+
+# Variables de entorno y credenciales (nunca se suben)
+.env
+.env.*
+!.env.example
+
+# Archivos del sistema y del editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.vercel

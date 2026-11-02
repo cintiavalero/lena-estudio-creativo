@@ -1,0 +1,502 @@
+/* PÁGINA DE INICIO */
+
+/* ── HERO ────────────────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(2.5rem, 6vw, 5.5rem) clamp(3rem, 6vw, 5rem);
+}
+
+.hero__titulo {
+  font-size: var(--texto-display);
+  font-weight: 650;
+  font-variation-settings: "opsz" 96;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  max-width: 9.5ch;
+  animation: entrar-texto 0.9s var(--curva-suave) both;
+}
+
+.hero__bajada {
+  max-width: 44ch;
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  color: var(--color-gris-texto);
+  font-size: var(--texto-lg);
+  line-height: 1.55;
+  animation: entrar-texto 0.9s var(--curva-suave) 0.12s both;
+}
+
+.hero__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  animation: entrar-texto 0.9s var(--curva-suave) 0.22s both;
+}
+
+@keyframes entrar-texto {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* El "pliego": una hoja de imprenta con trabajos reales de LENA */
+.hero__pliego {
+  position: relative;
+  padding: 18px;
+}
+
+.pliego {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4%;
+  aspect-ratio: 1 / 1.06;
+  padding: 7% 7% 12%;
+  background: var(--color-blanco);
+  box-shadow: 0 1px 0 var(--color-gris-linea), 0 30px 60px -30px rgb(30 29 27 / 0.35);
+  transform: rotate(-1.6deg);
+  animation: entrar-pliego 1.1s var(--curva-suave) both;
+}
+
+.pliego--1 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.pliego--2 {
+  grid-template-rows: 1fr;
+}
+
+@keyframes entrar-pliego {
+  from { opacity: 0; transform: translateY(30px) rotate(-5deg); }
+  to { opacity: 1; transform: rotate(-1.6deg); }
+}
+
+.pliego__pieza {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-gris-claro);
+  border-radius: 2px;
+  animation: revelar-pieza 0.9s var(--curva-suave) both;
+}
+
+.pliego__pieza img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pliego--3 .pliego__pieza--1 {
+  grid-row: 1 / 3;
+}
+
+.pliego__pieza--1 { animation-delay: 0.35s; }
+.pliego__pieza--2 { animation-delay: 0.5s; }
+.pliego__pieza--3 { animation-delay: 0.65s; }
+
+@keyframes revelar-pieza {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* Barra de control de color, abajo del pliego */
+.pliego__control {
+  position: absolute;
+  left: 7%;
+  bottom: 4.5%;
+  display: flex;
+  height: 9px;
+  width: 30%;
+  animation: entrar-texto 0.6s var(--curva-suave) 0.9s both;
+}
+
+.pliego__control span { flex: 1; }
+.pliego__control span:nth-child(1) { background: var(--color-naranja); }
+.pliego__control span:nth-child(2) { background: var(--color-lavanda); }
+.pliego__control span:nth-child(3) { background: var(--color-tinta); }
+.pliego__control span:nth-child(4) { background: var(--color-gris-texto); }
+.pliego__control span:nth-child(5) { background: var(--color-gris-linea); }
+
+.pliego__registro {
+  position: absolute;
+  width: 22px;
+  color: var(--color-tinta);
+  opacity: 0.75;
+  animation: entrar-texto 0.6s var(--curva-suave) 1s both;
+}
+
+.pliego__registro--izquierda { left: 1.2%; top: 50%; translate: 0 -50%; }
+.pliego__registro--derecha { right: 1.2%; top: 50%; translate: 0 -50%; }
+
+.marcas-corte--hero {
+  inset: -16px;
+  animation: entrar-texto 0.6s var(--curva-suave) 1.05s both;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__titulo {
+    max-width: 11ch;
+  }
+
+  .hero__pliego {
+    width: min(100%, 540px);
+    margin-inline: auto;
+  }
+}
+
+/* ── SECCIONES ───────────────────────────────────────────────────────── */
+.seccion {
+  padding-top: var(--espacio-seccion);
+}
+
+.seccion__encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.seccion__titulo {
+  font-size: var(--texto-3xl);
+  letter-spacing: -0.025em;
+}
+
+.seccion__titulo--chico {
+  font-size: var(--texto-2xl);
+}
+
+.seccion__bajada {
+  max-width: 48ch;
+  margin-top: 0.6rem;
+  color: var(--color-gris-texto);
+}
+
+@media (max-width: 640px) {
+  .seccion__encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ── DESTACADOS ──────────────────────────────────────────────────────── */
+.grilla-destacados {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.25rem) clamp(1rem, 2.5vw, 2rem);
+}
+
+.grilla-destacados > * {
+  min-width: 0;
+}
+
+.grilla-destacados__grande {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 900px) {
+  .grilla-destacados {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grilla-destacados__grande {
+    grid-row: span 1;
+  }
+
+  .grilla-destacados__grande .tarjeta-producto__marco {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+/* ── SERVICIOS (índice editorial) ────────────────────────────────────── */
+.indice-servicios {
+  border-top: 1.5px solid var(--color-tinta);
+}
+
+.indice-servicios li {
+  border-bottom: 1px solid var(--color-gris-linea);
+}
+
+.indice-servicios__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  grid-template-areas:
+    "nombre descripcion flecha"
+    "nombre incluye flecha";
+  column-gap: 2rem;
+  row-gap: 0.35rem;
+  align-items: start;
+  padding: 1.6rem 0.25rem;
+  text-decoration: none;
+  transition: background-color 0.3s, padding 0.35s var(--curva-suave);
+}
+
+.indice-servicios__fila h3 {
+  grid-area: nombre;
+  font-size: var(--texto-xl);
+  transition: color 0.2s;
+}
+
+.indice-servicios__fila p {
+  grid-area: descripcion;
+  color: var(--color-tinta);
+}
+
+.indice-servicios__incluye {
+  grid-area: incluye;
+  color: var(--color-gris-texto);
+  font-size: var(--texto-sm);
+}
+
+.indice-servicios__flecha {
+  grid-area: flecha;
+  align-self: center;
+  transition: transform 0.35s var(--curva-suave), color 0.2s;
+}
+
+.indice-servicios__fila:hover {
+  background: var(--color-blanco);
+  padding-inline: 1rem;
+}
+
+.indice-servicios__fila:hover h3 {
+  color: var(--color-naranja-oscuro);
+}
+
+.indice-servicios__fila:hover .indice-servicios__flecha {
+  transform: translateX(6px);
+  color: var(--color-naranja-oscuro);
+}
+
+@media (max-width: 760px) {
+  .indice-servicios__fila {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "nombre flecha"
+      "descripcion flecha"
+      "incluye flecha";
+    padding-block: 1.25rem;
+  }
+}
+
+/* ── SOBRE LENA ──────────────────────────────────────────────────────── */
+.sobre {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.sobre__etiqueta {
+  font-size: var(--texto-3xl);
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+
+.sobre__frase {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-2xl);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  max-width: 22ch;
+}
+
+.sobre__texto {
+  max-width: 52ch;
+  margin-top: 1.5rem;
+  color: var(--color-gris-texto);
+}
+
+.sobre__pasos {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--color-blanco);
+  border-radius: var(--radio-panel);
+  border: 1px solid var(--color-gris-linea);
+}
+
+.sobre__subtitulo {
+  margin-bottom: 1.5rem;
+  font-size: var(--texto-xl);
+}
+
+@media (max-width: 860px) {
+  .sobre {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── EMPRESAS ASOCIADAS (resumen) ────────────────────────────────────── */
+.lista-asociadas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 860px) {
+  .lista-asociadas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.asociada {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--color-gris-linea);
+  border-radius: var(--radio-panel);
+  background: var(--color-blanco);
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.35s var(--curva-suave);
+}
+
+.asociada:hover {
+  border-color: var(--color-tinta);
+  transform: translateY(-2px);
+}
+
+.asociada__monograma {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-family: var(--fuente-titulos);
+  font-size: 1.35rem;
+  font-weight: 600;
+  background: var(--color-lavanda-suave);
+  color: var(--color-lavanda-oscuro);
+}
+
+.asociada--naranja .asociada__monograma {
+  background: var(--color-naranja-suave);
+  color: var(--color-naranja-oscuro);
+}
+
+.asociada__monograma--grande {
+  width: 84px;
+  height: 84px;
+  font-size: 2.4rem;
+}
+
+.asociada__texto {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.asociada__texto strong {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-lg);
+  font-weight: 600;
+}
+
+.asociada__texto small {
+  color: var(--color-gris-texto);
+  font-size: var(--texto-xs);
+}
+
+.lista-asociadas--compacta .etiqueta-proximamente {
+  margin-left: auto;
+}
+
+/* ── BANDA DE CONTACTO ───────────────────────────────────────────────── */
+.banda-contacto {
+  margin-top: var(--espacio-seccion);
+}
+
+.banda-contacto__contenido {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem 3rem;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  background: var(--color-lavanda-suave);
+  border-radius: var(--radio-panel);
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.banda-contacto__titulo {
+  margin-bottom: 0.75rem;
+  font-size: var(--texto-3xl);
+  letter-spacing: -0.025em;
+}
+
+.banda-contacto__contenido > div > p {
+  max-width: 40ch;
+  color: var(--color-tinta);
+}
+
+.banda-contacto__acciones {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+@media (max-width: 860px) {
+  .banda-contacto .contenedor {
+    width: calc(100% - var(--margen-lateral) * 2);
+  }
+
+  .banda-contacto__contenido {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botones grandes de contacto (WhatsApp, Instagram, etc.) */
+.enlaces-contacto {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.enlace-contacto {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid var(--color-tinta);
+  border-radius: 12px;
+  background: var(--color-blanco);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.enlace-contacto span {
+  display: grid;
+  line-height: 1.3;
+}
+
+.enlace-contacto small {
+  color: var(--color-gris-texto);
+  font-size: var(--texto-xs);
+}
+
+.enlace-contacto:hover {
+  background: var(--color-tinta);
+  color: var(--color-blanco);
+}
+
+.enlace-contacto:hover small {
+  color: var(--color-gris-linea);
+}
+
+.enlace-contacto--whatsapp .icono {
+  color: var(--color-whatsapp);
+}
+
+.enlace-contacto--whatsapp:hover .icono {
+  color: currentColor;
+}

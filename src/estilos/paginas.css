@@ -1,0 +1,335 @@
+/* SERVICIOS, OTROS SERVICIOS, CONTACTO Y 404 */
+
+/* ── SERVICIOS ───────────────────────────────────────────────────────── */
+.indice-rapido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.indice-rapido a {
+  padding: 0.4rem 0.9rem;
+  border: 1.5px solid var(--color-gris-linea);
+  border-radius: var(--radio-boton);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.indice-rapido a:hover {
+  border-color: var(--color-tinta);
+}
+
+.lista-servicios {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.servicio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.servicio--invertido .servicio__imagen {
+  order: 2;
+}
+
+.servicio__imagen {
+  aspect-ratio: 5 / 4;
+}
+
+.servicio__imagen .imagen-producto {
+  border-radius: var(--radio-imagen);
+}
+
+.servicio__titulo {
+  font-size: var(--texto-2xl);
+  letter-spacing: -0.025em;
+}
+
+.servicio__descripcion {
+  max-width: 46ch;
+  margin-top: 0.9rem;
+  font-size: var(--texto-lg);
+  color: var(--color-gris-texto);
+}
+
+.servicio__subtitulo {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--fuente-textos);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.servicio__incluye {
+  columns: 2;
+  column-gap: 2rem;
+  font-size: var(--texto-sm);
+}
+
+.servicio__incluye li {
+  position: relative;
+  break-inside: avoid;
+  padding: 0.3rem 0 0.3rem 1.1rem;
+}
+
+.servicio__incluye li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-naranja);
+}
+
+.servicio__nota {
+  margin-top: 1.5rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--color-lavanda);
+  font-size: var(--texto-sm);
+  color: var(--color-gris-texto);
+}
+
+.servicio__nota a {
+  color: var(--color-lavanda-oscuro);
+  font-weight: 600;
+}
+
+.servicio__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+@media (max-width: 860px) {
+  .servicio {
+    grid-template-columns: 1fr;
+  }
+
+  .servicio--invertido .servicio__imagen {
+    order: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicio__incluye {
+    columns: 1;
+  }
+}
+
+/* ── OTROS SERVICIOS ─────────────────────────────────────────────────── */
+.pagina-otros .lista-asociadas {
+  padding-top: 1rem;
+}
+
+.asociada--grande {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  min-height: 300px;
+}
+
+.asociada--grande .asociada__texto {
+  gap: 0.4rem;
+}
+
+.asociada--grande .asociada__texto strong {
+  font-size: var(--texto-2xl);
+}
+
+.asociada__descripcion {
+  color: var(--color-gris-texto);
+  font-size: var(--texto-sm);
+}
+
+.asociada__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-top: auto;
+}
+
+.asociada__logo {
+  height: 48px;
+  width: auto;
+}
+
+/* Página individual de una empresa asociada */
+.pagina-empresa {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  max-width: 820px;
+}
+
+.pagina-empresa__tarjeta {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  padding: clamp(2rem, 6vw, 4rem);
+  border: 1px solid var(--color-gris-linea);
+  border-radius: var(--radio-panel);
+  background: var(--color-blanco);
+}
+
+.pagina-empresa__registro {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 26px;
+  color: var(--color-gris-linea);
+}
+
+.pagina-empresa__logo {
+  height: 72px;
+  width: auto;
+}
+
+.pagina-empresa__categoria {
+  margin-top: 0.75rem;
+  color: var(--color-lavanda-oscuro);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.pagina-empresa--naranja .pagina-empresa__categoria {
+  color: var(--color-naranja-oscuro);
+}
+
+.pagina-empresa__nombre {
+  font-size: var(--texto-display);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.pagina-empresa__descripcion {
+  max-width: 46ch;
+  font-size: var(--texto-lg);
+  color: var(--color-gris-texto);
+}
+
+.pagina-empresa__proximamente {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: var(--color-gris-claro);
+  font-size: var(--texto-sm);
+}
+
+.pagina-empresa__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.pagina-empresa__aclaracion {
+  margin-top: 1rem;
+  color: var(--color-gris-texto);
+  font-size: var(--texto-xs);
+}
+
+.pagina-empresa__volver {
+  margin-top: 2rem;
+}
+
+/* ── CONTACTO ────────────────────────────────────────────────────────── */
+.contacto__grilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  padding-top: 1rem;
+}
+
+.contacto__canales {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.contacto__sin-datos {
+  padding: 1.25rem;
+  border: 1px dashed var(--color-gris-linea);
+  border-radius: 12px;
+  color: var(--color-gris-texto);
+}
+
+.contacto__datos {
+  display: grid;
+  gap: 0.6rem;
+  color: var(--color-gris-texto);
+}
+
+.contacto__datos p {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contacto__pedido {
+  display: grid;
+  justify-items: start;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: var(--radio-panel);
+  background: var(--color-lavanda-suave);
+}
+
+.contacto__pedido h2 {
+  font-size: var(--texto-xl);
+}
+
+@media (max-width: 860px) {
+  .contacto__grilla {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── PÁGINA NO ENCONTRADA ────────────────────────────────────────────── */
+.no-encontrada {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding-block: clamp(3rem, 10vw, 7rem);
+}
+
+.no-encontrada__numero {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(5rem, 18vw, 11rem);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-tinta);
+}
+
+.no-encontrada h1 {
+  font-size: var(--texto-2xl);
+}
+
+.no-encontrada p {
+  color: var(--color-gris-texto);
+  margin-bottom: 0.5rem;
+}
+
+.pagina-empresa--naranja .asociada__monograma {
+  background: var(--color-naranja-suave);
+  color: var(--color-naranja-oscuro);
+}

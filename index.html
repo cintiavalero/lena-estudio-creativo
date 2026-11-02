@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título, descripción e imagen para compartir: se completan solos desde
+         src/contenido/configuracionSitio.js al generar el sitio. -->
+    <title>%TITULO_SITIO%</title>
+    <meta name="description" content="%DESCRIPCION_SITIO%" />
+    <meta name="theme-color" content="#FBFAF7" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="%NOMBRE_SITIO%" />
+    <meta property="og:title" content="%TITULO_SITIO%" />
+    <meta property="og:description" content="%DESCRIPCION_SITIO%" />
+    <!--%META_URL%-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div id="raiz"></div>
+    <noscript>Para ver el sitio de LENA es necesario activar JavaScript en el navegador.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
