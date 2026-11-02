@@ -23,7 +23,7 @@ const productos = [
     categorias: ["carteleria-gran-formato", "decoracion-personalizados"],
     etiquetas: ["vinilo", "adhesivo", "pared", "vidriera", "decoración"],
     imagenPrincipal: "/imagenes/productos/vinilo-decorativo.jpg",
-    imagenesAdicionales: ["/imagenes/productos/vinilo-decorativo-2.jpg", "/imagenes/productos/vinilo-decorativo-3.jpg"],
+    imagenesAdicionales: ["/imagenes/productos/vinilo-decorativo-2.jpg"],
     textoAlternativo: "Vinilo decorativo de flores sobre una pared blanca, detrás de un sillón",
     ilustracion: "",
     precio: null,

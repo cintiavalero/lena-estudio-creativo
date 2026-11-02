@@ -9,6 +9,8 @@ import Icono from "../componentes/comunes/Icono.jsx";
 import EnlacesContacto from "../componentes/comunes/EnlacesContacto.jsx";
 import { MarcaRegistro } from "../componentes/comunes/Decoraciones.jsx";
 import IlustracionRespaldo from "../componentes/comunes/IlustracionRespaldo.jsx";
+import FeedDescubrir from "../componentes/feed/FeedDescubrir.jsx";
+import configuracionInicio from "../contenido/configuracionInicio.js";
 
 const textos = textosSitio.inicio;
 const CANTIDAD_DESTACADOS = 6;
@@ -20,14 +22,6 @@ function Hero() {
       <div className="hero__texto">
         <h1 id="titulo-hero" className="hero__titulo">{textos.heroTitulo}</h1>
         <p className="hero__bajada">{textos.heroBajada}</p>
-        <div className="hero__botones">
-          <Link to="/catalogo" className="boton boton--principal">
-            {textos.heroBotonCatalogo}
-          </Link>
-          <Link to="/contacto" className="boton boton--secundario">
-            {textos.heroBotonPresupuesto}
-          </Link>
-        </div>
       </div>
 
       {imagenes.length > 0 && (
@@ -223,8 +217,18 @@ export default function Inicio() {
   useMetadatos({ titulo: textos.tituloPagina });
   return (
     <>
-      <Hero />
-      <Destacados />
+      {configuracionInicio.mostrarFeed ? (
+        <>
+          {configuracionInicio.mostrarPresentacionGrande && <Hero />}
+          <FeedDescubrir tituloPrincipal={!configuracionInicio.mostrarPresentacionGrande} />
+        </>
+      ) : (
+        <>
+          {/* Inicio clásico, sin feed: portada + destacados */}
+          <Hero />
+          <Destacados />
+        </>
+      )}
       <FechasEspeciales />
       <ServiciosResumen />
       <SobreLena />

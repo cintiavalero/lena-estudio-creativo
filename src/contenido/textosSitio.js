@@ -13,15 +13,21 @@ const textosSitio = {
     tituloPagina: "Diseño gráfico y productos personalizados",
     heroTitulo: "Diseño que se puede tocar.",
     heroBajada:
-      "Identidad visual, papelería, merch y packaging personalizados para personas, emprendimientos y empresas. Te acompañamos desde la idea hasta la pieza terminada.",
-    heroBotonCatalogo: "Explorar el catálogo",
-    heroBotonPresupuesto: "Pedir un presupuesto",
+      "Identidad visual, papelería, merch y packaging personalizados para personas, emprendimientos y empresas.",
     // Fotos del collage del inicio (hasta 3). Se toman de la carpeta public/imagenes/
     heroImagenes: [
       { archivo: "/imagenes/productos/agenda-personalizada.jpg", textoAlternativo: "Agenda con tapa de hojas tropicales" },
       { archivo: "/imagenes/productos/tarjetas-presentacion.jpg", textoAlternativo: "Tarjetas de presentación en blanco y negro" },
       { archivo: "/imagenes/productos/stickers-etiquetas.jpg", textoAlternativo: "Stickers para el packaging de una tienda" },
     ],
+
+    // Feed "Descubrí" (la primera pantalla). Ver también configuracionInicio.js
+    feedBotonMezclar: "Mezclar",
+    feedVerCategoria: "Ver todo",
+    feedEtiquetaServicio: "Servicio creativo",
+    feedFinTitulo: "Viste todo el catálogo.",
+    feedFinBoton: "Mezclar y ver de nuevo",
+    feedFinEnlace: "Buscar en el catálogo",
 
     destacadosTitulo: "Del catálogo",
     destacadosBajada: "Modelos listos para pedir y piezas que adaptamos a tu idea.",

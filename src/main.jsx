@@ -16,6 +16,9 @@ import "./estilos/paginas.css";
 
 aplicarTema();
 
+// El sitio maneja el scroll al navegar (así el feed del inicio retoma su posición).
+if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+
 createRoot(document.getElementById("raiz")).render(
   <StrictMode>
     <BrowserRouter>

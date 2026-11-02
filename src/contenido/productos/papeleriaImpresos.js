@@ -71,7 +71,7 @@ const productos = [
     categorias: ["papeleria-impresos", "emprendedores-negocios", "packaging-cajas"],
     etiquetas: ["stickers", "etiquetas", "calcos", "packaging"],
     imagenPrincipal: "/imagenes/productos/stickers-etiquetas.jpg",
-    imagenesAdicionales: [],
+    imagenesAdicionales: ["/imagenes/productos/stickers-holograficos.jpg"],
     textoAlternativo: "Stickers rectangulares con el mensaje de bienvenida de una tienda",
     ilustracion: "",
     precio: null,

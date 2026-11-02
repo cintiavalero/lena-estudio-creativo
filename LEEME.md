@@ -70,6 +70,7 @@ lena-estudio-creativo/
 │   │   ├── coloresTema.js           colores y tipografías
 │   │   ├── textosSitio.js           títulos, textos y botones de cada página
 │   │   ├── navegacion.js            menú de arriba y de abajo
+│   │   ├── configuracionInicio.js   feed aleatorio de la pantalla de inicio
 │   │   ├── categorias.js            categorías del catálogo
 │   │   ├── productos/               productos, fotos y precios (un archivo por categoría)
 │   │   │   ├── todosLosProductos.js     explicación de cada dato + ejemplo
@@ -104,6 +105,7 @@ lena-estudio-creativo/
 | Cambiar el número de WhatsApp o el email        | `src/contenido/configuracionSitio.js`         |
 | Cambiar Instagram o Pinterest                   | `src/contenido/redesSociales.js`              |
 | Cambiar el título grande del inicio             | `src/contenido/textosSitio.js`                |
+| Ajustar el feed aleatorio del inicio            | `src/contenido/configuracionInicio.js`        |
 | Cambiar los colores                             | `src/contenido/coloresTema.js`                |
 | Crear o renombrar una categoría                 | `src/contenido/categorias.js`                 |
 | Cambiar las preguntas del formulario a medida   | `src/contenido/personalizaciones.js`          |
@@ -228,7 +230,7 @@ Ejemplo de producto nuevo:
 - En la vista **"Todo"**, el catálogo se muestra **agrupado por categoría**: aparecen los primeros 4 productos de cada una y un botón "Ver todo".
 - Cada producto aparece en el grupo de su categoría principal, ordenado por su número de `orden` (más chico primero).
 - **Conviene darles un `orden` bajo a los productos con foto**, así son los primeros que se ven.
-- En el inicio, la sección **"Para cada fecha"** muestra solos todos los productos de la categoría Temporadas & Fechas Especiales.
+- En el inicio, debajo del feed, la sección **"Para cada fecha"** muestra solos todos los productos de la categoría Temporadas & Fechas Especiales.
 
 ## A3. Ocultar un producto
 
@@ -323,7 +325,34 @@ Reglas:
 
 En el archivo de su categoría, cambiá `productoDestacado: false` por `productoDestacado: true`.
 
-En el inicio se muestran los primeros **6** destacados, ordenados por su número de `orden`. El primero se ve más grande, así que conviene que tenga una foto linda y de buena calidad.
+Los destacados salen entre los primeros del feed del inicio (siguen mezclados con el resto).
+
+## A7 bis. El feed del inicio ("Descubrí")
+
+La primera pantalla es un mosaico de productos **en orden aleatorio**, como en una red social:
+
+- **Cambia en cada visita**: al entrar o recargar el sitio, el orden es otro. Al volver atrás desde un producto, el orden y la posición se mantienen.
+- **Fotos deslizables**: si un producto tiene fotos adicionales (`imagenesAdicionales`), se pasan deslizando con el dedo (o con flechas en la compu), con puntitos que indican la foto actual.
+- **Accesos intercalados**: cada tantos productos aparece un acceso a una categoría ("Ver todo") o a un servicio creativo.
+- **Carga por tandas**: los productos se van cargando a medida que la persona baja. Al final se puede mezclar de nuevo.
+- **Botón "Mezclar"**: arriba del feed, para ver otro orden en el momento. Además, los productos que tienen fotos adicionales pasan a mostrar una de esas fotos como portada, así parece que hay cosas nuevas para ver (la principal sigue dentro de la galería). Esto se puede apagar con `alMezclarMostrarFotoAdicional: false`.
+
+Se ajusta en `src/contenido/configuracionInicio.js`:
+
+| Dato                                 | Qué hace                                                                              |
+| ------------------------------------ | ------------------------------------------------------------------------------------- |
+| `mostrarFeed`                        | `true` = el inicio arranca con el feed. `false` = vuelve a la portada clásica.         |
+| `mostrarPresentacionGrande`          | `true` = muestra también la portada con el collage de fotos, arriba del feed.          |
+| `mezclarEnCadaVisita`                | `false` = siempre el mismo orden (según `orden`).                                      |
+| `priorizarProductosConFoto`          | `true` = los productos con foto y los destacados salen primero.                        |
+| `productosPorTanda`                  | Cuántos productos se cargan cada vez (12 por defecto).                                 |
+| `cadaCuantosProductosUnaCategoria`   | Cada cuántos productos aparece un acceso a una categoría (`0` = nunca).                |
+| `cadaCuantosProductosUnServicio`     | Cada cuántos productos aparece un servicio creativo (`0` = nunca).                     |
+| `alMezclarMostrarFotoAdicional`      | `true` = al tocar "Mezclar", se muestra una foto adicional como portada.                |
+
+Los textos del feed (botón "Mezclar", mensaje del final) están en `textosSitio.js`, en la sección `inicio`.
+
+> 💡 El feed se ve mucho mejor con fotos reales: los productos sin foto muestran su dibujo y salen al final mientras `priorizarProductosConFoto` esté en `true`.
 
 ## A8. Producto del catálogo, personalizable o ambos
 
@@ -815,4 +844,5 @@ Resumen técnico para un desarrollador que continúe el proyecto.
   - Los precios del frontend son orientativos hasta que haya validación en el servidor.
 - **SEO:** `vite.config.js` inyecta título, descripción y Open Graph en `index.html` desde `configuracionSitio.js`, y genera `robots.txt` y, si hay `urlPublica`, `sitemap.xml`. Cada página actualiza `document.title` con `useMetadatos`.
 - **Vercel:** `vercel.json` reescribe todas las rutas sin extensión a `index.html`, así `/carrito`, `/finalizar-pedido` o `/catalogo/:id` funcionan al recargar o al entrar directo.
-- **Pruebas:** `npm test` corre `pruebas/logica.test.js` con `node:test`. Cubre precios, agrupación de líneas, personalizaciones, totales, validación del carrito guardado y el mensaje.
+- **Feed del inicio:** `src/logica/feed.js` arma el feed (mezcla con semilla, sin portadas repetidas, accesos intercalados) y lo reparte en columnas tipo mosaico; `src/componentes/feed/FeedDescubrir.jsx` lo muestra con carga por tandas (IntersectionObserver) y guarda semilla y posición en `sessionStorage` para retomarlas al volver atrás. La galería deslizable es `src/componentes/comunes/GaleriaDeslizable.jsx` (scroll-snap).
+- **Pruebas:** `npm test` corre `pruebas/logica.test.js` y `pruebas/feed.test.js` con `node:test`. Cubren precios, agrupación de líneas, personalizaciones, totales, validación del carrito guardado, el mensaje y el armado del feed.
