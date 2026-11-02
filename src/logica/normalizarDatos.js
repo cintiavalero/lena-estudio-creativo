@@ -100,6 +100,7 @@ export function normalizarProducto(producto) {
     imagenPrincipal: comoTexto(producto.imagenPrincipal),
     imagenesAdicionales: comoListaDeTextos(producto.imagenesAdicionales),
     textoAlternativo: comoTexto(producto.textoAlternativo, nombre),
+    ilustracion: comoTexto(producto.ilustracion),
     precio,
     tipoPrecio,
     permiteCompraEstandar,

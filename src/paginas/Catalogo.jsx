@@ -9,6 +9,8 @@ import Icono from "../componentes/comunes/Icono.jsx";
 import { TrazoTitulo } from "../componentes/comunes/Decoraciones.jsx";
 
 const textos = textosSitio.catalogo;
+// En la vista "Todo", cuántos productos se muestran por categoría.
+const PRODUCTOS_POR_GRUPO = 4;
 
 export default function Catalogo() {
   const { productosVisibles, categoriasVisibles } = useCatalogo();
@@ -26,6 +28,26 @@ export default function Catalogo() {
     () => filtrarProductos(productosVisibles, { idCategoria: categoriaActiva?.id || "", busqueda, categorias: categoriasVisibles }),
     [productosVisibles, categoriaActiva, busqueda, categoriasVisibles]
   );
+
+  // Sin filtro ni búsqueda, el catálogo se muestra agrupado por categoría.
+  const vistaAgrupada = !categoriaActiva && !busqueda.trim();
+  const grupos = useMemo(
+    () =>
+      categoriasVisibles
+        .map((categoria) => ({
+          categoria,
+          // Cada producto aparece en el grupo de su categoría principal (sin repetirse).
+          productos: productosVisibles.filter((producto) => producto.categorias[0] === categoria.id),
+          total: productosVisibles.filter((producto) => producto.categorias.includes(categoria.id)).length,
+        }))
+        .filter((grupo) => grupo.productos.length > 0),
+    [categoriasVisibles, productosVisibles]
+  );
+
+  const elegirCategoria = (idCategoria) => {
+    actualizarParametro("categoria", idCategoria);
+    document.getElementById("buscador-catalogo")?.closest(".filtros")?.scrollIntoView({ block: "start" });
+  };
 
   const actualizarParametro = (clave, valor) => {
     const nuevos = new URLSearchParams(parametros);
@@ -89,7 +111,28 @@ export default function Catalogo() {
           </p>
         </div>
 
-        {resultados.length > 0 ? (
+        {vistaAgrupada ? (
+          <div className="catalogo-agrupado">
+            {grupos.map((grupo, indiceGrupo) => (
+              <section className="grupo-catalogo" key={grupo.categoria.id} aria-labelledby={`grupo-${grupo.categoria.id}`}>
+                <div className="grupo-catalogo__encabezado">
+                  <div>
+                    <h2 id={`grupo-${grupo.categoria.id}`} className="grupo-catalogo__titulo">{grupo.categoria.nombre}</h2>
+                    <p className="grupo-catalogo__descripcion">{grupo.categoria.descripcion}</p>
+                  </div>
+                  <button type="button" className="enlace-flecha" onClick={() => elegirCategoria(grupo.categoria.id)}>
+                    {textos.textoVerCategoria} ({grupo.total}) <Icono nombre="ir" tamano={18} />
+                  </button>
+                </div>
+                <div className="grilla-productos grilla-productos--cuatro">
+                  {grupo.productos.slice(0, PRODUCTOS_POR_GRUPO).map((producto, indice) => (
+                    <TarjetaProducto key={producto.id} producto={producto} prioridad={indiceGrupo === 0 && indice < 4} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : resultados.length > 0 ? (
           <div className="grilla-productos" key={`${categoriaActiva?.id || "todo"}-${busqueda}`}>
             {resultados.map((producto, indice) => (
               <div className="grilla-productos__item" style={{ "--indice": Math.min(indice, 8) }} key={producto.id}>

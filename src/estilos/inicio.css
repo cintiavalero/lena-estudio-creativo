@@ -215,6 +215,11 @@
   .grilla-destacados__grande .tarjeta-producto__marco {
     aspect-ratio: 16 / 11;
   }
+
+  /* En dos columnas, el sexto destacado quedaría solo en su fila */
+  .grilla-destacados > :nth-child(6) {
+    display: none;
+  }
 }
 
 /* ── SERVICIOS (índice editorial) ────────────────────────────────────── */
@@ -499,4 +504,121 @@
 
 .enlace-contacto--whatsapp:hover .icono {
   color: currentColor;
+}
+
+/* ── PARA CADA FECHA ─────────────────────────────────────────────────── */
+.lista-fechas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1.5px solid var(--color-tinta);
+}
+
+.lista-fechas li {
+  border-bottom: 1px solid var(--color-gris-linea);
+}
+
+.lista-fechas li:not(:nth-child(3n)) .fecha {
+  border-right: 1px solid var(--color-gris-linea);
+}
+
+.fecha {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 1.1rem 1.25rem 1.1rem 0.25rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.lista-fechas li:not(:nth-child(3n + 1)) .fecha {
+  padding-left: 1.25rem;
+}
+
+.fecha__dibujo {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-gris-claro);
+  transition: transform 0.4s var(--curva-suave);
+}
+
+.fecha__dibujo svg {
+  width: 84%;
+}
+
+.fecha__dibujo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fecha__texto {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.fecha__texto strong {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.fecha__texto small {
+  color: var(--color-gris-texto);
+  font-size: var(--texto-xs);
+  line-height: 1.4;
+}
+
+.fecha:hover {
+  background: var(--color-blanco);
+}
+
+.fecha:hover .fecha__dibujo {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.fecha:hover strong {
+  color: var(--color-naranja-oscuro);
+}
+
+@media (max-width: 900px) {
+  .lista-fechas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lista-fechas li .fecha {
+    border-right: 0 !important;
+    padding-left: 0.25rem !important;
+  }
+
+  .lista-fechas li:nth-child(odd) .fecha {
+    border-right: 1px solid var(--color-gris-linea) !important;
+  }
+
+  .lista-fechas li:nth-child(even) .fecha {
+    padding-left: 1.25rem !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .lista-fechas {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-fechas li:nth-child(n) .fecha {
+    border-right: 0 !important;
+    padding-left: 0.25rem !important;
+  }
+
+  .fecha__dibujo {
+    width: 56px;
+    height: 56px;
+  }
 }

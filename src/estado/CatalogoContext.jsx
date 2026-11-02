@@ -49,6 +49,11 @@ export function CatalogoProvider({ children }) {
       obtenerProducto: (id) => productosPorId.get(id) || null,
       obtenerServicio: (id) => serviciosPorId.get(id) || null,
       obtenerCategoria: (id) => catalogo.categorias.find((categoria) => categoria.id === id) || null,
+      // Dibujo de respaldo: el del producto o, si no tiene, el de su categoría principal.
+      obtenerIlustracion: (item) =>
+        item?.ilustracion ||
+        catalogo.categorias.find((categoria) => categoria.id === item?.categorias?.[0])?.ilustracion ||
+        "estrella",
       obtenerEmpresa: (id) => catalogo.empresas.find((empresa) => empresa.id === id) || null,
     };
   }, [catalogo]);

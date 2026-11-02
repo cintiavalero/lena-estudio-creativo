@@ -20,7 +20,7 @@
    y el resto del sitio sigue funcionando sin cambios.
    ===================================================================== */
 
-import productosLocales from "../contenido/productos.js";
+import productosLocales from "../contenido/productos/todosLosProductos.js";
 import categoriasLocales from "../contenido/categorias.js";
 import serviciosLocales from "../contenido/servicios.js";
 import empresasLocales from "../contenido/empresasAsociadas.js";

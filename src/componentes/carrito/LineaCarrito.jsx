@@ -14,10 +14,10 @@ const textos = textosSitio.carrito;
 
 export default function LineaCarrito({ linea, variante = "completa", alNavegar }) {
   const { cambiarCantidad, quitar } = useCarrito();
-  const { obtenerCategoria } = useCatalogo();
+  const { obtenerIlustracion } = useCatalogo();
   const soloLectura = variante === "revision";
   const compacta = variante === "panel";
-  const ilustracion = obtenerCategoria(linea.item?.categorias?.[0])?.ilustracion || "estrella";
+  const ilustracion = obtenerIlustracion(linea.item);
   const puedeEditar = linea.disponible && !soloLectura && (linea.modalidad === "personalizado" || linea.item?.variantes);
   const detallesVisibles = compacta ? linea.detalles.slice(0, 2) : linea.detalles;
 

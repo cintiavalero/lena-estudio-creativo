@@ -27,6 +27,12 @@ const textosSitio = {
     destacadosBajada: "Modelos listos para pedir y piezas que adaptamos a tu idea.",
     destacadosEnlace: "Ver todo el catálogo",
 
+    // Sección "Para cada fecha": muestra los productos de esta categoría.
+    fechasCategoria: "temporadas-fechas-especiales",
+    fechasTitulo: "Para cada fecha",
+    fechasBajada: "Regalos y kits personalizados para las fechas que importan.",
+    fechasEnlace: "Ver todas las fechas",
+
     serviciosTitulo: "Servicios creativos",
     serviciosBajada: "Antes de imprimir, diseñamos. Esto es lo que podemos crear con vos.",
     serviciosEnlace: "Ver todos los servicios",
@@ -56,8 +62,9 @@ const textosSitio = {
     titulo: "Catálogo",
     bajada: "Elegí un modelo de LENA o pedilo a tu medida. Lo personalizado se cotiza por WhatsApp.",
     textoBuscador: "Buscar en el catálogo",
-    ejemploBuscador: "Agenda, stickers, caja…",
+    ejemploBuscador: "Día de la Madre, mate, stickers…",
     textoTodas: "Todo",
+    textoVerCategoria: "Ver todo",
     sinResultadosTitulo: "No encontramos productos con esa búsqueda.",
     sinResultadosTexto: "Probá con otra palabra o escribinos: si lo podemos hacer, te lo cotizamos.",
     botonLimpiar: "Ver todo el catálogo",

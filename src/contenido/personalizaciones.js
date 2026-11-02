@@ -5,7 +5,8 @@
    Cuando alguien elige "Personalizar este producto" o "Solicitar a
    medida", completa un formulario corto. Acá se definen las preguntas.
 
-   Cada producto elige su formulario en productos.js con la línea:
+   Cada producto elige su formulario (en los archivos de la carpeta
+   productos/) con la línea:
        formularioPersonalizacion: "textil",
    (o el nombre de cualquier formulario de esta lista).
 
@@ -166,6 +167,28 @@ export const formulariosPersonalizacion = {
       ejemplo: "Ej: vidriera, pared interior, feria, al aire libre",
     },
     textoIncluido,
+  ],
+
+  // Regalos y fechas especiales
+  regalos: [
+    descripcionPedido,
+    {
+      idCampo: "paraQuien",
+      etiqueta: "¿Para quién es?",
+      etiquetaCorta: "Para",
+      tipo: "texto",
+      obligatorio: false,
+      ejemplo: "Ej: mi mamá, mi equipo de trabajo, la seño de sala de 4",
+    },
+    {
+      idCampo: "fechaEntrega",
+      etiqueta: "¿Para cuándo lo necesitás?",
+      etiquetaCorta: "Fecha de entrega",
+      tipo: "fecha",
+      obligatorio: false,
+    },
+    textoIncluido,
+    coloresPreferidos,
   ],
 
   // Servicios de diseño (logos, identidad, flyers, redes, etc.)

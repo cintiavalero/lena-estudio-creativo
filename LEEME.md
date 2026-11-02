@@ -71,7 +71,12 @@ lena-estudio-creativo/
 │   │   ├── textosSitio.js           títulos, textos y botones de cada página
 │   │   ├── navegacion.js            menú de arriba y de abajo
 │   │   ├── categorias.js            categorías del catálogo
-│   │   ├── productos.js             productos, fotos y precios
+│   │   ├── productos/               productos, fotos y precios (un archivo por categoría)
+│   │   │   ├── todosLosProductos.js     explicación de cada dato + ejemplo
+│   │   │   ├── papeleriaImpresos.js     Papelería & Impresos
+│   │   │   ├── merchRegalos.js          Merch & Regalos
+│   │   │   ├── temporadasFechasEspeciales.js   Día de la Madre, Navidad…
+│   │   │   └── …                        (uno por cada categoría)
 │   │   ├── personalizaciones.js     preguntas para pedidos personalizados
 │   │   ├── servicios.js             servicios creativos de LENA
 │   │   ├── empresasAsociadas.js     Valero IT, Push, RompeHielo
@@ -94,7 +99,7 @@ lena-estudio-creativo/
 
 | Quiero…                                         | Archivo                                       |
 | ----------------------------------------------- | --------------------------------------------- |
-| Cambiar un producto, su foto o su precio        | `src/contenido/productos.js`                  |
+| Cambiar un producto, su foto o su precio        | carpeta `src/contenido/productos/` (archivo de su categoría) |
 | Agregar una foto nueva                          | carpeta `public/imagenes/productos/`          |
 | Cambiar el número de WhatsApp o el email        | `src/contenido/configuracionSitio.js`         |
 | Cambiar Instagram o Pinterest                   | `src/contenido/redesSociales.js`              |
@@ -122,10 +127,33 @@ lena-estudio-creativo/
 
 # Parte A · Tareas habituales
 
+## Dónde están los productos
+
+Los productos están en la carpeta `src/contenido/productos/`, **un archivo por categoría**:
+
+| Archivo                            | Categoría principal               |
+| ---------------------------------- | --------------------------------- |
+| `papeleriaImpresos.js`             | Papelería & Impresos              |
+| `packagingCajas.js`                | Packaging & Cajas                 |
+| `textilEstampados.js`              | Textil & Estampados               |
+| `merchRegalos.js`                  | Merch & Regalos                   |
+| `eventosCelebraciones.js`          | Eventos & Celebraciones           |
+| `carteleriaGranFormato.js`         | Cartelería & Gran Formato         |
+| `emprendedoresNegocios.js`         | Emprendedores & Negocios          |
+| `decoracionPersonalizados.js`      | Decoración & Personalizados       |
+| `oficinaEducacion.js`              | Oficina & Educación               |
+| `temporadasFechasEspeciales.js`    | Día de la Madre, San Valentín, Navidad y demás fechas |
+
+Cada producto está en el archivo de su **categoría principal**, que es la primera de su lista `categorias`. Igual puede aparecer en otras categorías del sitio: por ejemplo, "Regalos para el Día de la Madre" está en `temporadasFechasEspeciales.js`, pero también se ve en Merch & Regalos.
+
+> 💡 **¿No sabés en qué archivo está un producto?** En Visual Studio Code apretá `Ctrl + Shift + F` (buscar en todos los archivos) y escribí su nombre.
+
+El archivo `todosLosProductos.js` explica qué significa cada dato y trae un ejemplo completo. No hace falta tocarlo, salvo que crees un archivo de productos nuevo.
+
 ## A1. Cambiar el nombre o la descripción de un producto
 
-1. Abrí `src/contenido/productos.js`.
-2. Apretá `Ctrl + F` y buscá el nombre del producto, por ejemplo `Agendas`.
+1. Abrí el archivo de su categoría en `src/contenido/productos/`.
+2. Apretá `Ctrl + F` y buscá el nombre del producto, por ejemplo `Agendas` (está en `papeleriaImpresos.js`).
 3. Cambiá el texto entre comillas de `nombre`, `descripcionCorta` (la que se ve en las tarjetas) o `descripcionExtendida` (la de la página del producto).
 4. Guardá con `Ctrl + S`.
 
@@ -150,7 +178,7 @@ El cambio aparece solo en el inicio, en el catálogo, en la página del producto
 ## A2. Agregar un producto
 
 1. Copiá la foto en `public/imagenes/productos/` (ver [A5](#a5-agregar-imágenes-nuevas)).
-2. Abrí `src/contenido/productos.js`.
+2. Abrí el archivo de la categoría principal del producto nuevo en `src/contenido/productos/` (por ejemplo, unas tazas van en `merchRegalos.js`).
 3. Buscá un producto parecido al que querés agregar y **copiá su bloque completo**: desde la `{` hasta la `},` (incluida la coma).
 4. Pegalo justo debajo de otro producto (después de su `},`).
 5. Cambiá los datos. Lo mínimo:
@@ -160,7 +188,9 @@ El cambio aparece solo en el inicio, en el catálogo, en la página del producto
    - `orden`: un número; los más chicos aparecen primero.
 6. Guardá.
 
-Al principio de `productos.js` hay un **ejemplo completo comentado** listo para copiar.
+Al principio de `todosLosProductos.js` hay un **ejemplo completo comentado** listo para copiar.
+
+> ⚠️ El `idProducto` no se puede repetir **en ningún archivo** de la carpeta.
 
 Ejemplo de producto nuevo:
 
@@ -175,6 +205,7 @@ Ejemplo de producto nuevo:
     imagenPrincipal: "/imagenes/productos/taza-lena.jpg",
     imagenesAdicionales: [],
     textoAlternativo: "Taza blanca con ilustración de flores",
+    ilustracion: "taza",
     precio: 9500,
     tipoPrecio: "fijo",
     permiteCompraEstandar: true,
@@ -190,11 +221,18 @@ Ejemplo de producto nuevo:
   },
 ```
 
-> 💡 Al final de `productos.js` hay productos ya cargados pero ocultos (tazas, calendarios, buzos, kits y láminas). Para publicarlos, completá su foto y cambiá `mostrarProducto: false` por `mostrarProducto: true`.
+> 💡 **Productos sin foto:** muchos productos todavía no tienen foto propia y muestran un dibujo (una taza, un mate, una flor…). El dibujo se elige con el dato `ilustracion`. Cuando tengas la foto, cargala en `imagenPrincipal` y el dibujo deja de mostrarse solo.
+
+### Cómo se ordena el catálogo
+
+- En la vista **"Todo"**, el catálogo se muestra **agrupado por categoría**: aparecen los primeros 4 productos de cada una y un botón "Ver todo".
+- Cada producto aparece en el grupo de su categoría principal, ordenado por su número de `orden` (más chico primero).
+- **Conviene darles un `orden` bajo a los productos con foto**, así son los primeros que se ven.
+- En el inicio, la sección **"Para cada fecha"** muestra solos todos los productos de la categoría Temporadas & Fechas Especiales.
 
 ## A3. Ocultar un producto
 
-En `productos.js`, buscá el producto y cambiá:
+En el archivo de su categoría, buscá el producto y cambiá:
 
 ```js
     mostrarProducto: true,
@@ -211,7 +249,7 @@ El producto desaparece del sitio pero sigue guardado; para volver a mostrarlo, p
 ## A4. Cambiar una fotografía
 
 1. Copiá la foto nueva en `public/imagenes/productos/`. Por ejemplo `agenda-floral.jpg`.
-2. En `productos.js`, buscá el producto y cambiá la línea `imagenPrincipal`:
+2. En el archivo de su categoría (carpeta `src/contenido/productos/`), buscá el producto y cambiá la línea `imagenPrincipal`:
 
 ```js
     imagenPrincipal: "/imagenes/productos/agenda-floral.jpg",
@@ -226,7 +264,9 @@ Para agregar **más fotos** a la galería del producto, usá `imagenesAdicionale
     imagenesAdicionales: ["/imagenes/productos/agenda-interior.jpg", "/imagenes/productos/agenda-tapa.jpg"],
 ```
 
-Si un producto no tiene foto (`imagenPrincipal: ""`), o la foto no se encuentra, el sitio muestra automáticamente un dibujo de su categoría. Nunca aparece una imagen rota.
+Si un producto no tiene foto (`imagenPrincipal: ""`), o la foto no se encuentra, el sitio muestra automáticamente un dibujo: el de su dato `ilustracion` o, si está vacío, el de su categoría. Nunca aparece una imagen rota.
+
+Dibujos disponibles para `ilustracion`: `"papel"`, `"caja"`, `"bolsa"`, `"remera"`, `"gorra"`, `"delantal"`, `"bandera"`, `"regalo"`, `"taza"`, `"mate"`, `"termo"`, `"llavero"`, `"chapita"`, `"lapicera"`, `"corazon"`, `"flor"`, `"corbata"`, `"arbol"`, `"huevo"`, `"globo"`, `"birrete"`, `"manzana"`, `"evento"`, `"banderines"`, `"credencial"`, `"cartel"`, `"negocio"`, `"cuadro"`, `"almohadon"`, `"cuaderno"`, `"etiqueta"` y `"estrella"`.
 
 > ⚠️ La ruta empieza con `/imagenes/…`, **sin** la palabra `public`.
 
@@ -249,7 +289,7 @@ Las fotos del collage del inicio se cambian en `src/contenido/textosSitio.js`, e
 
 ## A6. Modificar un precio
 
-En `productos.js`, cada producto tiene dos datos de precio:
+En el archivo de su categoría, cada producto tiene dos datos de precio:
 
 ```js
     precio: null,
@@ -281,7 +321,7 @@ Reglas:
 
 ## A7. Marcar productos como destacados
 
-En `productos.js`, cambiá `productoDestacado: false` por `productoDestacado: true`.
+En el archivo de su categoría, cambiá `productoDestacado: false` por `productoDestacado: true`.
 
 En el inicio se muestran los primeros **6** destacados, ordenados por su número de `orden`. El primero se ve más grande, así que conviene que tenga una foto linda y de buena calidad.
 
@@ -307,9 +347,9 @@ Si no tiene opciones: `variantes: null,`
 
 ## A9. Editar las preguntas de personalización
 
-Las preguntas que se hacen al personalizar están en `src/contenido/personalizaciones.js`, agrupadas en formularios: `general`, `textil`, `packaging`, `papeleria`, `eventos`, `granFormato` y `diseno` (para servicios).
+Las preguntas que se hacen al personalizar están en `src/contenido/personalizaciones.js`, agrupadas en formularios: `general`, `textil`, `packaging`, `papeleria`, `eventos`, `granFormato`, `regalos` (fechas especiales) y `diseno` (para servicios).
 
-Cada producto elige su formulario en `productos.js`:
+Cada producto elige su formulario en su archivo de la carpeta `productos/`:
 
 ```js
     formularioPersonalizacion: "textil",
@@ -430,7 +470,7 @@ Los datos vacíos no se muestran en el sitio.
   },
 ```
 
-3. En `productos.js`, agregá `"mascotas"` a las `categorias` de los productos que correspondan:
+3. En los archivos de `src/contenido/productos/`, agregá `"mascotas"` a las `categorias` de los productos que correspondan:
 
 ```js
     categorias: ["merch-regalos", "mascotas"],
@@ -747,8 +787,9 @@ Estos datos no estaban en el sitio anterior y **no se inventaron**. Hay que comp
 - [ ] **Número de WhatsApp** de LENA → `configuracionSitio.js` → `contacto.whatsapp`. Sin esto, los pedidos no se pueden enviar.
 - [ ] **Instagram** y **Pinterest** de LENA → `redesSociales.js`.
 - [ ] **Email**, **ciudad** y **horario** (opcionales) → `configuracionSitio.js`.
-- [ ] **Precios** de los productos que se venden como modelo del catálogo → `productos.js`. Hoy todos dicen "Consultar precio".
-- [ ] **Fotos propias** para: Cajas personalizadas, Tote bags, Blocs de notas, Pulseras, Banners y Stands (hoy muestran un dibujo). También conviene reemplazar la foto de Flyers, que es una plantilla genérica con texto de relleno.
+- [ ] **Precios** de los productos que se venden como modelo del catálogo → carpeta `src/contenido/productos/`. Hoy todos dicen "Consultar precio".
+- [ ] **Fotos propias** para los productos que hoy muestran un dibujo (la mayoría de los nuevos: fechas especiales, tazas, mates, cuadros, etc.). También conviene reemplazar la foto de Flyers, que es una plantilla genérica con texto de relleno.
+- [ ] **Revisar el catálogo ampliado**: se publicaron todos los productos posibles del rubro. Si LENA no hace alguno, ocultalo con `mostrarProducto: false` (A3).
 - [ ] Confirmar qué productos se venden como **modelo del catálogo** (`permiteCompraEstandar`) y cuáles solo **a medida**.
 - [ ] Confirmar la disponibilidad de **Producción Audiovisual** (hoy dice "Consultá disponibilidad").
 - [ ] **Sitio oficial y logo** de Valero IT, Push y RompeHielo → `empresasAsociadas.js`.

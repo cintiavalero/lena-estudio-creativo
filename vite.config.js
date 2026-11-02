@@ -11,7 +11,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import configuracionSitio from "./src/contenido/configuracionSitio.js";
-import productos from "./src/contenido/productos.js";
+import productos from "./src/contenido/productos/todosLosProductos.js";
 import servicios from "./src/contenido/servicios.js";
 import empresasAsociadas from "./src/contenido/empresasAsociadas.js";
 

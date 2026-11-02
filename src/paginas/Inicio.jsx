@@ -8,6 +8,7 @@ import Revelar from "../componentes/comunes/Revelar.jsx";
 import Icono from "../componentes/comunes/Icono.jsx";
 import EnlacesContacto from "../componentes/comunes/EnlacesContacto.jsx";
 import { MarcaRegistro } from "../componentes/comunes/Decoraciones.jsx";
+import IlustracionRespaldo from "../componentes/comunes/IlustracionRespaldo.jsx";
 
 const textos = textosSitio.inicio;
 const CANTIDAD_DESTACADOS = 6;
@@ -73,6 +74,44 @@ function Destacados() {
           </Revelar>
         ))}
       </div>
+    </section>
+  );
+}
+
+function FechasEspeciales() {
+  const { productosVisibles, obtenerIlustracion } = useCatalogo();
+  const fechas = productosVisibles.filter((producto) => producto.categorias.includes(textos.fechasCategoria));
+  if (fechas.length === 0) return null;
+  return (
+    <section className="seccion contenedor" aria-labelledby="titulo-fechas">
+      <div className="seccion__encabezado">
+        <div>
+          <h2 id="titulo-fechas" className="seccion__titulo">{textos.fechasTitulo}</h2>
+          <p className="seccion__bajada">{textos.fechasBajada}</p>
+        </div>
+        <Link to={`/catalogo?categoria=${textos.fechasCategoria}`} className="enlace-flecha">
+          {textos.fechasEnlace} <Icono nombre="ir" tamano={18} />
+        </Link>
+      </div>
+      <ul className="lista-fechas">
+        {fechas.map((producto) => (
+          <li key={producto.id}>
+            <Link to={producto.ruta} className="fecha">
+              <span className="fecha__dibujo">
+                {producto.imagenPrincipal ? (
+                  <img src={producto.imagenPrincipal} alt="" loading="lazy" />
+                ) : (
+                  <IlustracionRespaldo tipo={obtenerIlustracion(producto)} />
+                )}
+              </span>
+              <span className="fecha__texto">
+                <strong>{producto.nombre}</strong>
+                <small>{producto.descripcionCorta}</small>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -186,6 +225,7 @@ export default function Inicio() {
     <>
       <Hero />
       <Destacados />
+      <FechasEspeciales />
       <ServiciosResumen />
       <SobreLena />
       <AsociadasResumen />

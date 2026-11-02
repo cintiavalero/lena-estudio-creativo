@@ -565,3 +565,54 @@
 .ficha__imagen-principal {
   position: relative;
 }
+
+/* ── CATÁLOGO AGRUPADO (vista "Todo") ────────────────────────────────── */
+.catalogo-agrupado {
+  display: grid;
+  gap: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.grupo-catalogo__encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1.5px solid var(--color-tinta);
+}
+
+.grupo-catalogo__titulo {
+  font-size: var(--texto-2xl);
+  letter-spacing: -0.025em;
+}
+
+.grupo-catalogo__descripcion {
+  max-width: 52ch;
+  margin-top: 0.4rem;
+  color: var(--color-gris-texto);
+  font-size: var(--texto-sm);
+}
+
+.grupo-catalogo .enlace-flecha {
+  border: 0;
+  background: none;
+  padding: 0.5rem 0;
+}
+
+.grilla-productos--cuatro {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1000px) {
+  .grilla-productos--cuatro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grupo-catalogo__encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -3,7 +3,8 @@
    ---------------------------------------------------------------------
    ✏️  ARCHIVO EDITABLE.
    Cada categoría es un bloque { ... }. Los productos se asocian a una
-   categoría escribiendo su "idCategoria" en el archivo productos.js.
+   categoría escribiendo su "idCategoria" en los archivos de la carpeta
+   productos/ (cada categoría tiene su propio archivo).
 
    - idCategoria: nombre interno, en minúsculas y con guiones, sin
      espacios ni tildes. Aparece en la dirección web
@@ -41,11 +42,7 @@ const categorias = [
     ilustracion: "papel",
     orden: 10,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Tarjetas premium", "Tarjetas de agradecimiento", "Gift cards", "Hang tags",
-      "Cuadernos y libretas", "Planificadores", "Calendarios", "Señaladores",
-      "Carpetas", "Menús", "Recetarios", "Diplomas", "Papelería institucional",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "packaging-cajas",
@@ -54,10 +51,7 @@ const categorias = [
     ilustracion: "caja",
     orden: 20,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Cajas rígidas premium", "Cajas con visor", "Bolsas kraft", "Bolsas boutique",
-      "Papel de seda", "Fajas y cintas", "Packaging para delivery",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "textil-estampados",
@@ -66,10 +60,7 @@ const categorias = [
     ilustracion: "bolsa",
     orden: 30,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Buzos y hoodies", "Gorras y pilusos", "Delantales", "Uniformes", "Cartucheras",
-      "Neceseres", "Pañuelos", "Parches textiles", "Prendas infantiles",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "merch-regalos",
@@ -78,11 +69,7 @@ const categorias = [
     ilustracion: "regalo",
     orden: 40,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Llaveros", "Pines y chapitas", "Imanes", "Tazas y vasos", "Botellas y termos",
-      "Mates", "Lapiceras", "Mousepads", "Kits corporativos", "Kits de bienvenida",
-      "Kits para influencers", "Kits para emprendedores",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "eventos-celebraciones",
@@ -91,11 +78,7 @@ const categorias = [
     ilustracion: "evento",
     orden: 50,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Credenciales y lanyards", "Banderines y guirnaldas", "Souvenirs", "Photobooth",
-      "Backdrops", "Toppers", "Decoración para cumpleaños", "Decoración para casamientos",
-      "Baby showers y bautismos",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "carteleria-gran-formato",
@@ -104,10 +87,7 @@ const categorias = [
     ilustracion: "cartel",
     orden: 60,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Roller banners", "Ploteos", "Lonas", "Gigantografías", "Señalética",
-      "Displays y exhibidores", "Paneles publicitarios", "Materiales para ferias",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "emprendedores-negocios",
@@ -116,10 +96,7 @@ const categorias = [
     ilustracion: "negocio",
     orden: 70,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Tarjetas de fidelización", "Etiquetas de productos", "Códigos QR impresos",
-      "Listas de precios", "Cartas gastronómicas", "Kits de marca",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "decoracion-personalizados",
@@ -128,10 +105,7 @@ const categorias = [
     ilustracion: "cuadro",
     orden: 80,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Cuadros", "Láminas y pósters", "Collages", "Portarretratos", "Almohadones",
-      "Carteles decorativos",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "oficina-educacion",
@@ -140,10 +114,7 @@ const categorias = [
     ilustracion: "cuaderno",
     orden: 90,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Etiquetas escolares", "Material didáctico", "Flashcards", "Kits para docentes",
-      "Organizadores de escritorio",
-    ],
+    productosPorHabilitar: [],
   },
   {
     idCategoria: "temporadas-fechas-especiales",
@@ -152,10 +123,7 @@ const categorias = [
     ilustracion: "estrella",
     orden: 100,
     mostrarCategoria: true,
-    productosPorHabilitar: [
-      "Navidad", "San Valentín", "Día de la Madre", "Día del Padre", "Día de la Niñez",
-      "Día del Maestro", "Pascuas", "Egresados", "Aniversarios",
-    ],
+    productosPorHabilitar: [],
   },
 ];
 

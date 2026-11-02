@@ -13,7 +13,7 @@ import Icono from "../comunes/Icono.jsx";
 import FormularioPedido from "./FormularioPedido.jsx";
 
 export default function FichaPedible({ item, volver, children }) {
-  const { obtenerCategoria } = useCatalogo();
+  const { obtenerCategoria, obtenerIlustracion } = useCatalogo();
   const { obtenerLinea } = useCarrito();
   const [parametros] = useSearchParams();
   const imagenes = useMemo(
@@ -22,7 +22,7 @@ export default function FichaPedible({ item, volver, children }) {
   );
   const [imagenActiva, setImagenActiva] = useState(0);
   const categorias = item.categorias.map(obtenerCategoria).filter((categoria) => categoria && categoria.visible);
-  const ilustracion = categorias[0]?.ilustracion || "estrella";
+  const ilustracion = obtenerIlustracion(item);
 
   // ¿Se está editando una línea del carrito? (?editar=idLinea)
   const idEdicion = parametros.get("editar");

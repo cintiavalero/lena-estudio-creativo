@@ -5,8 +5,7 @@ import ImagenProducto from "../comunes/ImagenProducto.jsx";
 import MarcasCorte from "../comunes/MarcasCorte.jsx";
 
 export default function TarjetaProducto({ producto, grande = false, prioridad = false }) {
-  const { obtenerCategoria } = useCatalogo();
-  const categoriaPrincipal = obtenerCategoria(producto.categorias[0]);
+  const { obtenerIlustracion } = useCatalogo();
   const textoModalidad =
     producto.permiteCompraEstandar && producto.permitePersonalizacion
       ? "Catálogo y a medida"
@@ -21,7 +20,7 @@ export default function TarjetaProducto({ producto, grande = false, prioridad = 
           <ImagenProducto
             src={producto.imagenPrincipal}
             alt={producto.textoAlternativo}
-            ilustracion={categoriaPrincipal?.ilustracion}
+            ilustracion={obtenerIlustracion(producto)}
             prioridad={prioridad}
           />
           <MarcasCorte />
